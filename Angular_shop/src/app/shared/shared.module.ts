@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './components/search/search.component';
-import { ResusableButtonsComponent } from './components/resusable-buttons/resusable-buttons.component';
+import { ResuableButtonsComponent } from './components/resusable-buttons/resusable-buttons.component';
 
 
 @NgModule({
   declarations: [
     SearchComponent,
-    ResusableButtonsComponent,
+    ResuableButtonsComponent,
   ],
   imports: [
     CommonModule, 
   ],
   exports: [
     SearchComponent,
-    ResusableButtonsComponent,
+    ResuableButtonsComponent,
   ],
 })
 export class SharedModule { }

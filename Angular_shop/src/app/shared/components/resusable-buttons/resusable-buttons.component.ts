@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-resusable-buttons',
+  selector: 'app-resuable-button',
   templateUrl: './resusable-buttons.component.html',
-  styleUrl: './resusable-buttons.component.css'
+  styleUrl: './resusable-buttons.component.css',
 })
-export class ResusableButtonsComponent {
+export class ResuableButtonsComponent {
+  @Input() isPrincipal!: boolean;
+  @Input() isSecondary!: boolean;
+  @Output() buttonClicked: EventEmitter<any> = new EventEmitter();
 
+  clicked() {
+    this.buttonClicked.emit();
+  }
 }

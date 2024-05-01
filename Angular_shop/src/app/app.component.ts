@@ -9,6 +9,9 @@ import { SimpleProduct } from "./shared/interfaces/produit.interface";
   selector: 'app-root',
 })
 export class AppComponent implements OnInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   public productCache!: SimpleProduct[];
   public produits!: SimpleProduct[];
   public produit: SimpleProduct = createProduct();

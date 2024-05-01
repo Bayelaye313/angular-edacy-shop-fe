@@ -1,1 +1,10 @@
-<p>resusable-buttons works!</p>
+<ng-content select=".right"></ng-content>
+<button
+    [ngClass]="{
+        principal: isPrincipal,
+        secondaire: isSecondary,        
+    }" 
+    (click)="clicked()" >
+    Notre Boutton Ici
+</button>
+<ng-content select=".left"></ng-content>
