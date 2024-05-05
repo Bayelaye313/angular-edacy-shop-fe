@@ -1,7 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './features/login/login.component';
+import { NotFoundComponent } from './features/not-found/not-found.component';
+import { CanActivateAuthGuard } from './shared/guard/auth.guard';
+import { CanLoginGuard } from './shared/guard/login.guard';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [CanLoginGuard]
+    /*     children: [
+      {
+        path: 'edit',
+        //component: EditLoginComponent,
+      }
+    ]
+ */
+  },
+  {
+    path: 'produits',
+    loadChildren:  () => import('./features/produits/produits.module').then(m => m.ProduitsModule),
+    canActivate: [CanActivateAuthGuard]
+    },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

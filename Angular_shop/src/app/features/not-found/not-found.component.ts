@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   styleUrl: './not-found.component.css'
 })
 export class NotFoundComponent {
-  compteur3!: Observable<number>;
   constructor(
   ) {}
 

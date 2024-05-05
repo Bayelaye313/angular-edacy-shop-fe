@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { SimpleProduct } from '../../../shared/interfaces/produit.interface';
 import { createProducts } from '../../../shared/donnees/produits.generate';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +12,7 @@ import { createProducts } from '../../../shared/donnees/produits.generate';
 export class ProductListComponent implements OnInit, OnDestroy {
   produits!: SimpleProduct[];
   prodRef!: Subscription
-  constructor(
+  constructor(private authservice:AuthService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
 
   logout() {
+    this.authservice.logOut()
   }
 
 
