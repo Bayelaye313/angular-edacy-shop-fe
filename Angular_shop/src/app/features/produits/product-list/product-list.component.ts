@@ -3,6 +3,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { SimpleProduct } from '../../../shared/interfaces/produit.interface';
 import { createProducts } from '../../../shared/donnees/produits.generate';
 import { AuthService } from '../../../shared/services/auth.service';
+import { ProduitService } from '../../../shared/services/produits/produit.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +13,14 @@ import { AuthService } from '../../../shared/services/auth.service';
 export class ProductListComponent implements OnInit, OnDestroy {
   produits!: SimpleProduct[];
   prodRef!: Subscription
-  constructor(private authservice:AuthService
+  constructor(private authservice:AuthService,
+    private produitservice: ProduitService
   ) {}
 
   ngOnInit(): void {
+    this.prodRef = this.produitservice.fetchProducts().subscribe(
+      (p)=>this.produits = p
+    )
     }
 
 
@@ -35,5 +40,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
+    this.prodRef.unsubscribe()
   }
 }

@@ -5,6 +5,7 @@ import { ResuableButtonsComponent } from './components/resusable-buttons/resusab
 import { MatInputModule } from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const MAT_COMPONENTS = [
   MatInputModule,
@@ -19,13 +20,15 @@ const MAT_COMPONENTS = [
   imports: [
     CommonModule,
     ...MAT_COMPONENTS,
-    FormsModule 
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     SearchComponent,
     ResuableButtonsComponent,
     ...MAT_COMPONENTS,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
 })
 export class SharedModule { }
