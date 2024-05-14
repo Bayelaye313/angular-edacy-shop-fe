@@ -20,7 +20,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.prodRef = this.produitservice.fetchProducts().subscribe(
       (p)=>this.produits = p
-    )
+    );
+    this.authservice.getStatus().pipe(
+      tap((state)=>console.log('status',state))
+    ).subscribe();
+
+    //this.produitservice.getMyService().subscribe()
     }
 
 
