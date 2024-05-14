@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SimpleProduct } from '../../interfaces/produit.interface';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, combineLatest, of, retry, switchMap, tap } from 'rxjs';
+import { Observable, catchError, combineLatest, first, of, retry, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,7 @@ export class ProduitService {
       tap(produits=>{
       console.log(produits)}),
       retry(3),
+      first(),
       catchError((error) => {
         console.log(error);
         return of([]);

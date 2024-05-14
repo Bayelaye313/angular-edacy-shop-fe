@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, Subject, Subscription, first, last, lastValueFrom, takeUntil, tap } from 'rxjs';
 import { SimpleProduct } from '../../../shared/interfaces/produit.interface';
 import { createProducts } from '../../../shared/donnees/produits.generate';
 import { AuthService } from '../../../shared/services/auth.service';
@@ -12,20 +12,35 @@ import { ProduitService } from '../../../shared/services/produits/produit.servic
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   produits!: SimpleProduct[];
-  prodRef!: Subscription
+  prodRef!: Subscription;
+  destroy$ = new Subject();
   constructor(private authservice:AuthService,
     private produitservice: ProduitService
   ) {}
 
   ngOnInit(): void {
     this.prodRef = this.produitservice.fetchProducts().subscribe(
-      (p)=>this.produits = p
-    );
+      //(p)=>this.produits = p
+      (p)=>{this.getProds();});
     this.authservice.getStatus().pipe(
       tap((state)=>console.log('status',state))
     ).subscribe();
 
     //this.produitservice.getMyService().subscribe()
+    }
+
+    async getProds(){
+      try {
+        this.produits = await lastValueFrom(
+          this.produitservice.fetchProducts().pipe(
+            takeUntil(this.destroy$),
+            first(),
+          )
+        )
+        
+      } catch (err) {
+        console.error(err)
+      }
     }
 
 
@@ -45,6 +60,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.prodRef.unsubscribe()
+    this.prodRef.unsubscribe();
+    this.destroy$.next(null)
   }
 }
