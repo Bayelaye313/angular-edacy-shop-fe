@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren:  () => import('./features/produits/produits.module').then(m => m.ProduitsModule),
     canActivate: [CanActivateAuthGuard]
     },
+    {
+      path: 'admin',
+      loadChildren:  () => import('./features/admin/admin.module').then(m => m.AdminModule),
+      canActivate: [CanActivateAuthGuard]
+      },  
   {
     path: '**',
     component: NotFoundComponent,
