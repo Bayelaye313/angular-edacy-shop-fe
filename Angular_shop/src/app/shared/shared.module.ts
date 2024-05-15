@@ -4,7 +4,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ResuableButtonsComponent } from './components/resusable-buttons/resusable-buttons.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 const MAT_COMPONENTS = [
@@ -21,14 +21,16 @@ const MAT_COMPONENTS = [
     CommonModule,
     ...MAT_COMPONENTS,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports: [
     SearchComponent,
     ResuableButtonsComponent,
     ...MAT_COMPONENTS,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
 })
 export class SharedModule { }
