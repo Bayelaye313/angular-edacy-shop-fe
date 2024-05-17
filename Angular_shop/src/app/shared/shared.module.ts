@@ -6,10 +6,12 @@ import { MatInputModule } from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
 
 const MAT_COMPONENTS = [
   MatInputModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSelectModule,
 ]
 
 @NgModule({
@@ -30,7 +32,7 @@ const MAT_COMPONENTS = [
     ...MAT_COMPONENTS,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule { }
